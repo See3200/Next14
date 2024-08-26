@@ -3,21 +3,21 @@
 import { User } from "@/types/User";
 import useSWR from "swr";
 import styles from "./style.module.scss";
+import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button } from "@mantine/core";
-import { useState } from "react";
 
 const UserList = () => {
   const { data, isLoading, error } = useSWR<{ data: User[] }, Error>("users");
-  const [open, setOpen] = useState(false);
+  const [opened, { open, close }] = useDisclosure(false);
   if (isLoading) return <p>Loading...</p>;
   if (!data) return null;
   return (
     <div>
-      <Modal opened={open} onClose={() => setOpen(false)} title="Authentication">
+      <Modal opened={opened} onClose={close} title="Authentication">
         <p>Modal content here...</p>
       </Modal>
 
-      <Button onClick={() => setOpen(true)}>Open modal</Button>
+      <Button onClick={open}>Open modal</Button>
       <ul className={styles.list}>
         {data.data.map((user: any) => (
           <li key={user.id}>{user.first_name}</li>
