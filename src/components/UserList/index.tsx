@@ -3,7 +3,7 @@
 import { User } from "@/types/User";
 import useSWR from "swr";
 import styles from "./style.module.scss";
-import { Modal, Button } from "@mantine/core";
+import { Button, Modal } from "antd";
 import { useState } from "react";
 
 const UserList = () => {
@@ -13,11 +13,12 @@ const UserList = () => {
   if (!data) return null;
   return (
     <div>
-      <Modal opened={open} onClose={() => setOpen(false)} title="Authentication">
-        <p>Modal content here...</p>
+      <Button type="primary" onClick={() => setOpen(true)}>
+        Open Modal
+      </Button>
+      <Modal title="Basic Modal" open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
+        <p>Some contents...</p>
       </Modal>
-
-      <Button onClick={() => setOpen(true)}>Open modal</Button>
       <ul className={styles.list}>
         {data.data.map((user: any) => (
           <li key={user.id}>{user.first_name}</li>

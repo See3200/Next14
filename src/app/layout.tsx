@@ -3,9 +3,7 @@ import { Inter } from "next/font/google";
 import "../styles/global.scss";
 import { SWRProvider } from "@/providers/SwrProvider";
 import QueryProvider from "@/providers/QueryProvider";
-import "@mantine/core/styles.css";
-
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,13 +19,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <ColorSchemeScript />
-      </head>
       <body className={inter.className}>
         <QueryProvider>
           <SWRProvider>
-            <MantineProvider>{children}</MantineProvider>
+            <AntdRegistry>{children}</AntdRegistry>
           </SWRProvider>
         </QueryProvider>
       </body>

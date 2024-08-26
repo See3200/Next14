@@ -6,7 +6,7 @@ import UserList from "@/components/UserList";
 import Link from "next/link";
 import StoredUserList from "@/components/UserList/StoredList";
 import { fetcher } from "@/network/api";
-import { Button } from "@mantine/core";
+import { Button } from "antd";
 
 export default async function Home() {
   //const { data, error, isLoading } = useSWR<any, Error>(["users"], ([url]) => fetcher(url));
@@ -22,7 +22,7 @@ export default async function Home() {
       <nav>
         <Link href="/about">About</Link>
       </nav>
-      <Button variant="filled">Button</Button>
+      <Button type="primary">Button</Button>
       <section>
         <h2>Data from request:</h2>
         <div>
