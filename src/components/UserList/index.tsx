@@ -3,12 +3,13 @@
 import { User } from "@/types/User";
 import useSWR from "swr";
 import styles from "./style.module.scss";
-import { Button, Modal } from "antd";
+import { Button, Modal, Slider } from "antd";
 import { useState } from "react";
 
 const UserList = () => {
   const { data, isLoading, error } = useSWR<{ data: User[] }, Error>("users");
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(50);
   if (isLoading) return <p>Loading...</p>;
   if (!data) return null;
   return (
@@ -19,6 +20,7 @@ const UserList = () => {
       <Modal title="Basic Modal" open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
         <p>Some contents...</p>
       </Modal>
+      <Slider defaultValue={value} value={value} onChange={(value) => setValue(value)} className={styles.slider} />
       <ul className={styles.list}>
         {data.data.map((user: any) => (
           <li key={user.id}>{user.first_name}</li>
