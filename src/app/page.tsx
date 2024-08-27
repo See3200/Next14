@@ -6,7 +6,8 @@ import UserList from "@/components/UserList";
 import Link from "next/link";
 import StoredUserList from "@/components/UserList/StoredList";
 import { fetcher } from "@/network/api";
-import { Button } from "@mantine/core";
+import { cn } from "@/lib/utils";
+import { Button } from "@/shared/ui/button";
 
 export default async function Home() {
   //const { data, error, isLoading } = useSWR<any, Error>(["users"], ([url]) => fetcher(url));
@@ -22,7 +23,12 @@ export default async function Home() {
       <nav>
         <Link href="/about">About</Link>
       </nav>
-      <Button variant="filled">Button</Button>
+      <Button
+        variant="destructive"
+        className={cn("min-h-10 bg-background font-sans text-slate-700 antialiased transition-all duration-200")}
+      >
+        Click me
+      </Button>
       <section>
         <h2>Data from request:</h2>
         <div>

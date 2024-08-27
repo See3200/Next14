@@ -15,6 +15,11 @@ module.exports = {
   extends: [
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
     "plugin:prettier/recommended", // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
+    // shadcn
+    // "next/core-web-vitals",
+    // "turbo",
+    // "prettier",
+    //"plugin:tailwindcss/recommended",
   ],
   rules: {
     "lines-between-class-members": "off",
@@ -25,4 +30,13 @@ module.exports = {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
   },
+  overrides: [
+    {
+      files: ["@/shared/ui/*.tsx"],
+      rules: {
+        "react/prop-types": "off",
+        //"react-refresh/only-export-components": "off",
+      },
+    },
+  ],
 };

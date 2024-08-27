@@ -5,4 +5,8 @@ module.exports = {
   printWidth: 120,
   tabWidth: 2,
   endOfLine: "auto",
+  plugins: [
+    "prettier-plugin-tailwindcss",
+  ],
+  tailwindFunctions: ["clsx"]
 };

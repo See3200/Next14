@@ -3,21 +3,46 @@
 import { User } from "@/types/User";
 import useSWR from "swr";
 import styles from "./style.module.scss";
-import { useDisclosure } from "@mantine/hooks";
-import { Modal, Button } from "@mantine/core";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/shared/ui/dialog";
+import { Button } from "../../shared/ui/button";
 
 const UserList = () => {
   const { data, isLoading, error } = useSWR<{ data: User[] }, Error>("users");
-  const [opened, { open, close }] = useDisclosure(false);
   if (isLoading) return <p>Loading...</p>;
   if (!data) return null;
   return (
     <div>
-      <Modal opened={opened} onClose={close} title="Authentication">
-        <p>Modal content here...</p>
-      </Modal>
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Share</Button>
+        </DialogTrigger>
+        <DialogContent className="relative flex min-h-20 max-w-60 flex-col items-center justify-start text-ellipsis rounded-sm text-gray-950 first-letter:text-slate-700">
+          <DialogHeader>
+            <DialogTitle className="relative text-center">Are you absolutely sure?</DialogTitle>
+            <DialogDescription>
+              This action cannot be undone. This will permanently delete your account and remove your data from our
+              servers.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="sm:justify-start">
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">
+                Close
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-      <Button onClick={open}>Open modal</Button>
       <ul className={styles.list}>
         {data.data.map((user: any) => (
           <li key={user.id}>{user.first_name}</li>
