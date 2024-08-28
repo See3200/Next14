@@ -1,3 +1,7 @@
+.wrapper {
+  margin: 70px 0 20px;
+}
+
 .list {
   margin: 2rem 0 0;
 }
@@ -8,4 +12,8 @@
   & :global(.mantine-Button-inner) {
     align-items: flex-start;
   }
+}
+
+.reduced {
+  border: 1px solid var(--mantine-color-red-7);
 }
