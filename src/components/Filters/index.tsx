@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Pagination } from "@mantine/core";
 import styles from "./style.module.scss";
+import plain from "./plain.module.css";
 
 type PropsType = {
   total: number;
@@ -23,7 +24,10 @@ const Filter = ({ total }: PropsType) => {
   };
 
   return (
-    <div className={styles["pagination-wrap"]}>
+    <div className={`${styles["pagination-wrap"]} ${plain.wrapper}`}>
+      <div className={plain["wrapper-css"]}>
+        <p>Nesting CSS</p>
+      </div>
       <Pagination value={pageNumber} onChange={handlePageChange} total={total} className={styles.pagination} />
     </div>
   );
