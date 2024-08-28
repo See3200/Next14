@@ -21,6 +21,7 @@ export default async function Home() {
       <p>Home page</p>
       <nav>
         <Link href="/about">About</Link>
+        <Link href="/jobs">Jobs</Link>
       </nav>
       <Button variant="filled">Button</Button>
       <section>

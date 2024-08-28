@@ -5,7 +5,7 @@ export const fetcher = async (url: string, options?: RequestOptions): Promise<an
   if (options) {
     const { id, page } = options;
     if (id) urlStr += `/${id}`;
-    if (page) urlStr += `?${page}`;
+    if (page || page === 0) urlStr += `?page=${page}`;
   }
   const controller = new AbortController();
   try {

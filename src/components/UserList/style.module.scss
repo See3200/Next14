@@ -5,8 +5,7 @@
 .btn {
   color: #e98c8c;
   transition: all .2s ease-in-out;
-
-  .mantine-Button-inner {
+  & :global(.mantine-Button-inner) {
     align-items: flex-start;
   }
 }

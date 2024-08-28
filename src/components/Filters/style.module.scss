@@ -1,0 +1,15 @@
+.pagination-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100px;
+}
+
+.pagination {
+  padding-top: 20px;
+
+  & :global(.mantine-Group-root) {
+    min-width: 400px;
+  }
+}
+
