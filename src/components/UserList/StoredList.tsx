@@ -17,7 +17,7 @@ const StoredUserList = () => {
 
   if (!users) return null;
   return (
-    <div className={cn(styles.wrapper, { [styles.reduced]: users.length <= 2 })}>
+    <div data-testid="wrapper" className={cn(styles.wrapper, { [styles.reduced]: users.length <= 2 })}>
       <h2>-- Stored User List --</h2>
       <ul className={styles.list}>
         {users.map((user: any) => (
