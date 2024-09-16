@@ -16,7 +16,6 @@ const UserDetails: FC<PropsType> = ({ id }) => {
     queryKey: ["userList"],
     queryFn: () => fetcher("users"),
   });
-  console.log(userList);
 
   return <div>{isLoading ? "Loading..." : <p>Email: {userData?.data?.email}</p>}</div>;
 };

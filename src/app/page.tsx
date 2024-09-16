@@ -7,8 +7,10 @@ import Link from "next/link";
 import StoredUserList from "@/components/UserList/StoredList";
 import { fetcher } from "@/network/api";
 import { Button } from "@mantine/core";
+import { cookies } from "next/headers";
 
 export default async function Home() {
+  const accessToken = await cookies().get("accessToken")?.value; // can be used in server side only
   //const { data, error, isLoading } = useSWR<any, Error>(["users"], ([url]) => fetcher(url));
   // const { data, error, isLoading } = useSWR<any, Error>("users");
   // if (error) {

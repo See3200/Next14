@@ -12,7 +12,13 @@ export const fetcher = async (url: string, options?: RequestOptions): Promise<an
     const response = await fetch(urlStr, {
       //cache: "force-cache",
       signal: controller.signal,
+      // headers: {
+      //   Authorization: `Bearer ...`,
+      // },
     });
+    // if (!response.ok) { // if "catch" doesn't work
+    //   throw new Error("Network response was not ok");
+    // }
     //console.log(response.json());
     return response.json();
     return {
