@@ -1,14 +1,35 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const protectedRoutes = ["/settings"];
+
 export async function middleware(request: NextRequest) {
   let accessToken = request.cookies.get("accessToken");
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("Authorization", `Bearer ${accessToken}`);
+
   //console.log("Token:   ", accessToken?.value);
+
+  // this block if for SignIn and SignUp pages
+  if (request.nextUrl.pathname.startsWith("/auth")) {
+    if (accessToken) {
+      // Check explicitly if it's "true"
+      return NextResponse.rewrite(new URL(request.nextUrl.pathname, request.url));
+    } else {
+      return NextResponse.rewrite(new URL("/auth", request.url));
+    }
+  }
+
+  // this block is for protecting some pages from unauthorized users
+  if (!accessToken && protectedRoutes.includes(request.nextUrl.pathname)) {
+    const absoluteURL = new URL("/", request.nextUrl.origin);
+    return NextResponse.redirect(absoluteURL.toString());
+  }
+
+  // there is check token functionality below
   if (accessToken) {
+    // check token's longevity
     console.log("__OK__");
-    //requestHeaders.set("Authorization", `Bearer ${accessToken}`);
   } else {
+    // use refreshToken and requests
     const response = await fetch("https://reqres.in/api/login", {
       method: "post",
       headers: {
@@ -27,6 +48,7 @@ export async function middleware(request: NextRequest) {
       console.log("__FAIL__");
     }
   }
+
   // You can set token in NextResponse, attach it to the request, or modify as needed
   const response = NextResponse.next({
     request: {

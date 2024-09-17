@@ -6,6 +6,8 @@ import QueryProvider from "@/providers/QueryProvider";
 import "@mantine/core/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { cookies } from "next/headers";
+import { InitialClientSide } from "@/components/InitialClientSide";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,6 +21,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isLoggedIn = cookies().get("accessToken") !== undefined;
+
   return (
     <html lang="en">
       <head>
@@ -27,7 +31,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>
           <SWRProvider>
-            <MantineProvider>{children}</MantineProvider>
+            <MantineProvider>
+              <InitialClientSide isLoggedIn={isLoggedIn} />
+              <main>{children}</main>
+            </MantineProvider>
           </SWRProvider>
         </QueryProvider>
       </body>

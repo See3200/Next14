@@ -12,14 +12,14 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      $bg-color,
-    )
-    $bg-color-dark;
-}
+// body {
+//   background: linear-gradient(
+//       to bottom,
+//       transparent,
+//       $bg-color,
+//     )
+//     $bg-color-dark;
+// }
 
 a {
   color: inherit;

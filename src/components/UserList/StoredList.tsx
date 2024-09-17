@@ -9,7 +9,7 @@ import { cn } from "@/hooks/cn";
 
 const StoredUserList = () => {
   const { fetchUsers, users } = useStore();
-  const { reduceUsers } = AppStore();
+  const { reduceUsers, isAuthenticated } = AppStore();
 
   useEffect(() => {
     fetchUsers();
@@ -24,9 +24,11 @@ const StoredUserList = () => {
           <li key={user.id}>{user.last_name}</li>
         ))}
       </ul>
-      <Button variant="outline" onClick={reduceUsers}>
-        Reduce users
-      </Button>
+      {isAuthenticated && (
+        <Button variant="outline" onClick={reduceUsers}>
+          Reduce users
+        </Button>
+      )}
     </div>
   );
 };

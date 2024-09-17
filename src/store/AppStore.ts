@@ -7,6 +7,8 @@ import useStore from "./Store";
 const AppStore = create<AppStore>()(
   devtools(
     immer((set, get) => ({
+      isAuthenticated: false,
+      setIsAuthenticated: (status: boolean) => set({ isAuthenticated: status }),
       reduceUsers: () => {
         const { users, setUsers } = useStore.getState();
         setUsers(users.slice(0, 2));
@@ -20,6 +22,8 @@ const AppStore = create<AppStore>()(
 );
 
 export interface AppStore {
+  isAuthenticated: boolean;
+  setIsAuthenticated: (status: boolean) => void;
   reduceUsers: () => User[];
 }
 
