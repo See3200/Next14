@@ -11,7 +11,7 @@ export const InitialClientSide = ({ isLoggedIn }: PropsType) => {
   const { setIsAuthenticated } = AppStore();
   useEffect(() => {
     setIsAuthenticated(isLoggedIn);
-  }, []);
+  }, [isLoggedIn]);
 
   return <div />;
 };

@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="robots" content="noindex,nofollow" />
         <ColorSchemeScript />
       </head>
       <body className={inter.className}>
